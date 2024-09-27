@@ -1,0 +1,83 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    margin-top: 3.5rem;
+    /* margin-inline: auto; */
+    background-color: slategrey;
+}
+
+.title {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.description {
+    margin-bottom: 2rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+
+    width: 50rem;
+    height: 100%;
+
+    padding: 3rem;
+    background-color: white;
+    border: 2px solid black;
+
+}
+
+.square {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 150px;
+    height: 150px;
+    border: 2px solid black;
+}
+
+.rock{
+    background-color: darkgray;
+    transition: transform .25s ease-in-out;
+}
+
+.paper {
+    background-color: bisque;
+    transition: transform .25s ease-in-out;
+}
+
+.scissors {
+    background-color: darkseagreen;
+    transition: transform .25s ease-in-out;
+}
+
+.rock:hover, .paper:hover, .scissors:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+}
+
+.result {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+
+    margin-top: 3rem;
+}
+
+.result .player, .result .opponent {
+    margin-bottom: 0.75rem;
+}
