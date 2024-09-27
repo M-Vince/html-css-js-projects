@@ -1,0 +1,35 @@
+body {
+    background-color: lightslategray;
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    margin-top: 15rem;
+}
+
+.recent {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    /* align-items: center; */
+
+    height: 100%;
+    margin: 0 2rem 2rem 2rem;
+    margin-top: 20rem;
+    padding: 2rem;
+    border: 2px black solid;
+    text-align: center;
+
+    background-color: rgb(180, 180, 180);
+}
+
+.bg {
+    display: flex;
+    justify-content: center;
+    border: 2px black solid;
+    margin: 0.3rem;
+}
