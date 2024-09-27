@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form Events</title>
+
+    <style>
+      body {
+        background-color: slategray;
+        transition: .5s background-color;
+      }
+    </style>
+  </head>
+  <body>
+    <h3> <a href="tv_show.html"> TV Show here! </a></h3>
+    <h1>List of Car Names</h1>
+
+    <form action="/thing" id="formText">
+      <input type="text" id="inputText"/>
+      <button>Submit</button>
+    </form>
+    <ul>
+      <h1>Car Names:</h1>
+    </ul>
+
+    <form action="/objection" id="login">
+      <h2> Login </h2>
+      <h3> Username </h3>
+      <input type="text" id="username">
+      <h3> Password </h3>
+      <input type="password" name="" id="password">
+      <button> Submit </button>
+    </form>
+
+    <h1 class="login-access"> </h1>
+
+    <div class="star-wars"> 
+      <h1> Star Wars API: Characters </h1>
+      <button class="sw"> Click me to get API working! </button>
+      <p class="name"> Name: </p>
+      <p class="gender"> Gender: </p>
+      <p class="eye-color"> Eye Color: </p>
+    </div>
+
+    <div class="dad-jokes">
+      <h1> Dad Jokes API: </h1>
+      <button class="joke"> Click to generate jokes! </button>
+      <ul class="content">
+        <!-- <li> </li> -->
+      </ul>
+    </div>
+
+  </body>
+
+  <!-- AXIOS -->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> 
+
+  <script src="app.js"></script>
+</html>
