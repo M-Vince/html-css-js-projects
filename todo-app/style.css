@@ -1,0 +1,107 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: rgb(76, 65, 65);
+    
+}
+
+main {
+    width: 30rem;
+    margin-top: 5rem;
+    margin-inline: auto;
+    background-color: rgb(71, 161, 152);
+}
+
+.container {
+    padding: 2rem 2rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.container > * {
+    margin: 10px 0;
+}
+
+.create-item {
+    width: 100%;
+    padding: 0.5rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    /* margin-inline: auto; */
+
+    border: 2px solid black;
+}
+
+.create-item-input {
+    height: 2.5rem;
+    width: 17.5rem;
+    
+    border: none;
+    border-radius: 8px;
+    /* border: 2px solid black */
+}
+
+.create-item-btn, .task-item-btn {
+    height: 2.5rem;
+    width: 62px;
+
+    border: none;
+    border-radius: 8px;
+    /* border: 2px solid black; */
+}
+
+.create-item-btn:hover, .task-item-btn:hover {
+    background-color: rgb(219, 219, 219);
+}
+
+.create-item-btn:active {
+    background-color: rgb(96, 224, 99);
+}
+
+.task-item-btn:active {
+    background-color: rgb(223, 102, 102);
+}
+
+.task{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+
+}
+
+.task-list {
+    /* margin-inline: auto; */
+    width: 100%;
+}
+
+.task-items {
+    padding: 14px 10px;
+    height: 100px;
+    margin: 8px 0;
+    background-color: #b9bbbc;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    list-style-type: none;
+    border-radius: 8px;
+}
+
+
+
+
+
+
+
+
