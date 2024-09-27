@@ -1,0 +1,38 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: rgb(108, 141, 161);
+}
+
+h1 {
+    padding-bottom: 1rem;
+}
+
+.container {
+    margin-top: 5rem;
+    margin-right: 5rem;
+    margin-left: 5rem;
+    border: 10px solid black;
+}
+
+.container-2 {
+    margin-top: 5rem;
+    margin-right: 5rem;
+    margin-left: 5rem;
+    margin-bottom: 5rem;
+    border: 10px solid black;
+}
+
+.grid-item {
+    border: 6px solid rgb(173, 18, 18);
+    background-color: rgb(220, 145, 145);
+    font-size: xx-large;
+    font-weight: bolder;
+
+    padding: 1rem;
+}
+
