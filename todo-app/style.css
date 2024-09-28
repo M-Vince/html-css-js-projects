@@ -50,7 +50,9 @@ main {
     /* border: 2px solid black */
 }
 
-.create-item-btn, .task-item-btn {
+.create-item-btn, 
+.task-item-btn-edit, 
+.task-item-btn-del   {
     height: 2.5rem;
     width: 62px;
 
@@ -59,15 +61,18 @@ main {
     /* border: 2px solid black; */
 }
 
-.create-item-btn:hover, .task-item-btn:hover {
-    background-color: rgb(219, 219, 219);
+.create-item-btn:hover, 
+.task-item-btn-edit:hover,
+.task-item-btn-del:hover {
+background-color: rgb(219, 219, 219);
 }
 
 .create-item-btn:active {
     background-color: rgb(96, 224, 99);
 }
 
-.task-item-btn:active {
+.task-item-btn-edit:active,
+.task-item-btn-del:active {
     background-color: rgb(223, 102, 102);
 }
 
@@ -77,6 +82,7 @@ main {
     flex-direction: column;
     align-items: start;
 
+    /* border: 2px solid black; */
 }
 
 .task-list {
@@ -93,9 +99,14 @@ main {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    gap: 2rem;
 
     list-style-type: none;
     border-radius: 8px;
+}
+
+.task-description {
+    width: 50%;
 }
 
 
