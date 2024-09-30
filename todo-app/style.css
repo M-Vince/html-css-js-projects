@@ -99,7 +99,7 @@ background-color: rgb(219, 219, 219);
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    gap: 2rem;
+    /* gap: 2rem; */
 
     list-style-type: none;
     border-radius: 8px;
@@ -107,6 +107,14 @@ background-color: rgb(219, 219, 219);
 
 .task-description {
     width: 50%;
+    max-width: 60%;
+    word-wrap: break-word;
+}
+
+.task-btn {
+    display: flex;
+    gap: 6px;
+    /* align-items: center; */
 }
 
 
