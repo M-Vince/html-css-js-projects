@@ -2,11 +2,15 @@ const input = document.querySelector('.create-item-input');
 const addBtn = document.querySelector('.create-item-btn');
 const taskList = document.querySelector('.task-list');
 
+let counter = 0;
 
 addBtn.addEventListener('click', () => {
     
     if (input.value) {
-        console.log(input.value);
+        // console.log(input.value);
+
+        localStorage.setItem(`task-items`, input.value);
+        console.log(`localStorage getItem key name: task-items ===> ` + localStorage.getItem(`task-items`));
 
         // OPTION 1
         
@@ -33,17 +37,7 @@ addBtn.addEventListener('click', () => {
 
         // OPTION 2
         
-        const addTask = Object.assign(document.createElement('li'), { className: 'task-items' });
-        const title = Object.assign(document.createElement('h3'), { className: 'task-description', innerText: input.value });
-        const editBtn = Object.assign(document.createElement('button'), { className: 'task-item-btn-edit', innerText: 'Edit' });
-        const delBtn = Object.assign(document.createElement('button'), { className: 'task-item-btn-del', innerText: 'Delete' });
-        const divWrap = Object.assign(document.createElement('div'), { className: 'task-btn' });
-
-        divWrap.append(editBtn);
-        divWrap.append(delBtn);
-        addTask.append(title);
-        addTask.append(divWrap);
-        taskList.append(addTask);
+        addItem();
         
         // OPTION 3
 
@@ -64,6 +58,20 @@ addBtn.addEventListener('click', () => {
     }
 })
 
+function addItem() {
+    const addTask = Object.assign(document.createElement('li'), { className: 'task-items' });
+    const title = Object.assign(document.createElement('h3'), { className: 'task-description', innerText: input.value });
+    const editBtn = Object.assign(document.createElement('button'), { className: 'task-item-btn-edit', innerText: 'Edit' });
+    const delBtn = Object.assign(document.createElement('button'), { className: 'task-item-btn-del', innerText: 'Delete' });
+    const divWrap = Object.assign(document.createElement('div'), { className: 'task-btn' });
+
+    divWrap.append(editBtn);
+    divWrap.append(delBtn);
+    addTask.append(title);
+    addTask.append(divWrap);
+    taskList.append(addTask);
+}
+
 
 const taskItem = document.querySelector('.task-items');
 
@@ -83,13 +91,36 @@ taskList.addEventListener('click', (e) => {
             prevEl.remove();
 
             const editInput = document.createElement('input');
-            editInput.style.width = '100%';
+            // editInput.style.width = '100%';
+            editInput.classList.add('edit-input');
             editInput.value = text;
 
-            
-            taskItem.prepend(editInput);
-        }    
-    } 
+            e.target.nextElementSibling.innerText = 'OK';
+            // console.log(e.target.nextElementSibling);
+
+            target.insertAdjacentElement('beforebegin', editInput);
+        } else if (e.target.innerText === 'OK') {
+            const target = e.target.parentNode;
+            const prevEl = target.previousElementSibling;
+            const text = prevEl.value;
+
+            if (text) {
+                prevEl.remove();
+    
+                const title = document.createElement('h3');
+                title.classList.add('task-description');
+                title.innerText = text;
+    
+                e.target.innerText = 'Delete';
+    
+                target.insertAdjacentElement('beforebegin', title);
+            }
+        }
+    } else if (e.target.className === 'task-description') {
+        const item = e.target.parentNode;
+        // const item = e.target;
+        item.classList.toggle('mark-as-done');
+    }
 })
 
 // const div = document.querySelector('.task-btn');
