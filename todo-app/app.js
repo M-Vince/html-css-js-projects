@@ -2,15 +2,42 @@ const input = document.querySelector('.create-item-input');
 const addBtn = document.querySelector('.create-item-btn');
 const taskList = document.querySelector('.task-list');
 
-let counter = 0;
+// const listItems = [
+//     {
+//         task: 'Upload video in Youtube',
+//         completed: false
+//     },
+//     {
+//         task: 'Record new audio',
+//         completed: true
+//     },
+//     {
+//         task: 'Add caption Thanks for Watching!',
+//         completed: false
+//     },
+// ];
+// listItems.forEach( loadItems );
+
+
+// console.log(listItems);
+let listItems;
+console.log(localStorage.getItem('task-items'));
+
+// Check if getItem 'task-items' is empty, then assign [] to listItems 
+if(localStorage.getItem('task-items')) {
+    listItems = JSON.parse(localStorage.getItem('task-items'));
+    listItems.forEach(loadItems);
+} else {
+    listItems = [];
+    console.log(listItems);
+}
 
 addBtn.addEventListener('click', () => {
     
     if (input.value) {
         // console.log(input.value);
 
-        localStorage.setItem(`task-items`, input.value);
-        console.log(`localStorage getItem key name: task-items ===> ` + localStorage.getItem(`task-items`));
+        // console.log(`localStorage getItem key name: task-items ===> ` + localStorage.getItem(`task-items`));
 
         // OPTION 1
         
@@ -36,8 +63,7 @@ addBtn.addEventListener('click', () => {
         // taskList.append(addTask);
 
         // OPTION 2
-        
-        addItem();
+        addItem(input.value);
         
         // OPTION 3
 
@@ -58,9 +84,9 @@ addBtn.addEventListener('click', () => {
     }
 })
 
-function addItem() {
+function addItem(value) {
     const addTask = Object.assign(document.createElement('li'), { className: 'task-items' });
-    const title = Object.assign(document.createElement('h3'), { className: 'task-description', innerText: input.value });
+    const title = Object.assign(document.createElement('h3'), { className: 'task-description', innerText: value });
     const editBtn = Object.assign(document.createElement('button'), { className: 'task-item-btn-edit', innerText: 'Edit' });
     const delBtn = Object.assign(document.createElement('button'), { className: 'task-item-btn-del', innerText: 'Delete' });
     const divWrap = Object.assign(document.createElement('div'), { className: 'task-btn' });
@@ -70,7 +96,40 @@ function addItem() {
     addTask.append(title);
     addTask.append(divWrap);
     taskList.append(addTask);
+
+    //LOCAL STORAGE SET ITEM
+    const addObjItem = {};
+    addObjItem.task = value;
+    addObjItem.completed = false;
+    listItems.push(addObjItem);
+    localStorage.setItem(`task-items`, JSON.stringify(listItems));
+
+    // console.log(JSON.stringify(listItems));
+    // const str = JSON.stringify(listItems);
+    // let parse = [];
+    // parse = JSON.parse(str);
+    // console.log(parse);
+    // Object.values(parse).forEach((value) => {
+    //     console.log(`Value ==> ${value.task}`);
+    // })
 }
+
+function loadItems(item) {
+    const addTask = Object.assign(document.createElement('li'), { className: 'task-items' });
+    const title = Object.assign(document.createElement('h3'), { className: 'task-description', innerText: item.task });
+    const editBtn = Object.assign(document.createElement('button'), { className: 'task-item-btn-edit', innerText: 'Edit' });
+    const delBtn = Object.assign(document.createElement('button'), { className: 'task-item-btn-del', innerText: 'Delete' });
+    const divWrap = Object.assign(document.createElement('div'), { className: 'task-btn' });
+
+    item.completed ? addTask.classList.toggle('mark-as-done') : '';
+
+    divWrap.append(editBtn);
+    divWrap.append(delBtn);
+    addTask.append(title);
+    addTask.append(divWrap);
+    taskList.append(addTask);
+}
+
 
 
 const taskItem = document.querySelector('.task-items');
