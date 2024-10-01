@@ -27,9 +27,10 @@ console.log(localStorage.getItem('task-items'));
 if(localStorage.getItem('task-items')) {
     listItems = JSON.parse(localStorage.getItem('task-items'));
     listItems.forEach(loadItems);
+    console.log('Items: ', listItems.map(item => item));
 } else {
     listItems = [];
-    console.log(listItems);
+    console.log(`listItems ==> ${listItems}`);
 }
 
 addBtn.addEventListener('click', () => {
@@ -141,46 +142,106 @@ taskList.addEventListener('click', (e) => {
         // e.target.parentNode.remove();
 
         if(e.target.innerText === 'Delete') {
+
+            // Get the item selected using .closest('CSS selector')
+            console.log(e.target.closest('.task-items'));
+
+            const index = findItemIndex(e.target);
+
+            // Create new array by using splice method to remove the selected index
+            listItems.splice(index, 1);
+            console.log(`Deleted, updating listItems... : `, listItems);
+            
             const target = e.target.parentNode;
             target.parentNode.remove();
-        } else if (e.target.className === 'task-item-btn-edit') {
+
+            // Update the localStorage
+            localStorage.setItem('task-items', JSON.stringify(listItems));
+        } else if (e.target.innerText === 'Edit') {
             const target = e.target.parentNode;
             const prevEl = target.previousElementSibling;
-            const text = prevEl.innerText;
+            // const text = prevEl.innerText;
             prevEl.remove();
 
-            const editInput = document.createElement('input');
-            // editInput.style.width = '100%';
-            editInput.classList.add('edit-input');
-            editInput.value = text;
+            const editInputText = document.createElement('input');
+            editInputText.classList.add('edit-input');
+            editInputText.value = prevEl.innerText;
 
             e.target.nextElementSibling.innerText = 'OK';
+            e.target.innerText = 'Cancel';
             // console.log(e.target.nextElementSibling);
 
-            target.insertAdjacentElement('beforebegin', editInput);
+            target.insertAdjacentElement('beforebegin', editInputText);
         } else if (e.target.innerText === 'OK') {
-            const target = e.target.parentNode;
-            const prevEl = target.previousElementSibling;
-            const text = prevEl.value;
-
-            if (text) {
-                prevEl.remove();
-    
-                const title = document.createElement('h3');
-                title.classList.add('task-description');
-                title.innerText = text;
-    
-                e.target.innerText = 'Delete';
-    
-                target.insertAdjacentElement('beforebegin', title);
-            }
+            editInput(e.target, true);
+        } else if (e.target.innerText === 'Cancel') {
+            // const index = findItemIndex(e.target);
+            // console.log(listItems[index].task);
+            editInput(e.target, false)
         }
     } else if (e.target.className === 'task-description') {
         const item = e.target.parentNode;
-        // const item = e.target;
-        item.classList.toggle('mark-as-done');
+        // const flag = item.classList.toggle('mark-as-done');
+        const index = findItemIndex(e.target);
+        console.log(e.target.closest('.task-items'));
+
+        // const nodes = Array.from(e.target.closest('ul').children);
+        // const index = nodes.indexOf(e.target.closest('.task-items'));
+        // console.log(`NODES => `, nodes);
+        // console.log(`LISTITEMS => `, listItems);
+        // console.log(`Nodes children ==> ${nodes.indexOf(e.target.closest('.task-items'))}`);
+        // const flag = listItems[index].completed;
+        // const flag = item.classList.toggle('mark-as-done') 
+        // console.log(`flag: `, flag);
+        
+        // listItems[index].completed = flag;
+        listItems[index].completed = item.classList.toggle('mark-as-done');
+        console.log(`listItems[${index}].completed = `, listItems[index].completed);
+        
+        localStorage.setItem('task-items', JSON.stringify(listItems));
     }
 })
+
+function findItemIndex(target) {
+    // Create array to get children of ul
+    const nodes = Array.from(target.closest('ul').children);
+    // Get the index of selected item ('li') using closest in the 'nodes' array
+    const index = nodes.indexOf(target.closest('.task-items'));
+    console.log(`NODES => `, nodes);
+    console.log(`LISTITEMS => `, listItems);
+    console.log(`Nodes children ==> ${nodes.indexOf(target.closest('.task-items'))}`);
+    return index;
+}
+
+function editInput(target, flag) {
+    // Remove input text and switch back to h3
+    const parent = target.parentNode;
+    const prevEl = parent.previousElementSibling;
+    // if flag is true = 'OK' button, if flag is false = 'Cancel' button
+    const text = flag ? prevEl.value : listItems[findItemIndex(target)].task;
+
+    if (text) {
+        prevEl.remove();
+
+        const title = document.createElement('h3');
+        title.classList.add('task-description');
+        title.innerText = text;
+
+        if (flag) {
+            // Assign new text to localStorage
+            listItems[findItemIndex(target)].task = text;
+            localStorage.setItem('task-items', JSON.stringify(listItems));
+
+            target.innerText = 'Delete';
+            target.previousElementSibling.innerText = 'Edit';
+        } else {
+            target.innerText = 'Edit';
+            target.nextElementSibling.innerText = 'Delete';
+        }
+
+        parent.insertAdjacentElement('beforebegin', title);
+    }
+}
 
 // const div = document.querySelector('.task-btn');
 
