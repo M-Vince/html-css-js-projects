@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="wrapper">
+        <main class="main-content"> 
+            <section class="budget-container">
+                <h2> Budget </h2>
+                <input type="text" placeholder="Enter Total Amount" id="budget-input">
+                <button class="btn-budget"> Set Budget </button>
+            </section>
+
+            <section class="expenses-container">
+                <h2> Expenses </h2>
+                <input type="text" name="expenses-type" id="expenses-type" placeholder="Type of Expense">
+                <input type="number" name="expenses-amount" id="expenses-amount" placeholder="Amount">
+                <button class="btn-expenses"> Check Amount </button>
+            </section>
+
+            <section class="overview">
+                <div class="overview-panel">
+                    <div>
+                        <h3>Total Budget</h3>
+                        <h4 class="total-budget-overview"> 8000 </h4>
+                    </div>
+                    <div>
+                        <h3>Expenses</h3>
+                        <h4 class="expenses-overview"> 0 </h4>
+                    </div>
+                    <div>
+                        <h3>Balance</h3>
+                        <h4 class="balance-overview"> 0 </h4>
+                    </div>
+                    
+                </div>
+            </section>
+
+            <section class="expenses-list">
+                <h2> Expense List </h2>
+                <ul class="list-items">
+                    <!-- <li> 
+                        <div>
+                            <h3> Groceries </h3>
+                            <h4> 2200 </h4>
+                        </div>
+                        <div>
+                            <button class="btn-edit"> Edit Button </button>
+                            <button class="btn-del"> Delete Button </button>
+                        </div>
+                    </li>
+                    <li> 
+                        <div>
+                            <h3> Rent </h3>
+                            <h4> 3500 </h4>
+                        </div>
+                        <div>
+                            <button class="btn-edit"> Edit Button </button>
+                            <button class="btn-del"> Delete Button </button>
+                        </div>
+                    </li>
+                    <li> 
+                        <div>
+                            <h3> Transport </h3>
+                            <h4> 800 </h4>
+                        </div>
+                        <div>
+                            <button class="btn-edit"> Edit Button </button>
+                            <button class="btn-del"> Delete Button </button>
+                        </div>
+                    </li> -->
+                    <!-- <li> 
+                        <div>
+                            <h3> Rent </h3>
+                            <h4> 3500 </h4>
+                        </div>
+                        <div>
+                            <button class="btn-edit"> Edit Button </button>
+                            <button class="btn-del"> Delete Button </button>
+                        </div>
+                    </li> -->
+                </ul>
+            </section>
+            
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

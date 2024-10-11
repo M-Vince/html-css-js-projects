@@ -1,0 +1,148 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: rgb(96, 96, 96);
+    font-size: 16px;
+    /* text-align: center; */
+}
+
+.wrapper {
+    background-color: #fff;
+    margin: 5rem auto;
+    padding: 2rem;
+    width: 60vw;
+    min-width: 50vw;
+    /* max-width: 70vw; */
+    height: 100%;
+}
+
+.main-content {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(1.5rem, 1fr));
+    column-gap: 10px;
+    row-gap: 10px;
+
+    background-color: #c99393;
+}
+
+section {
+    padding: 1rem;
+}
+
+.budget-container, .expenses-container {
+    background-color: #587ef4;
+    width: 100%;
+    height: 200px;  
+    padding: 1rem 2rem;
+
+    border: 2px solid black;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.budget-container > *, .expenses-container > * {
+    margin-bottom: 6px;    
+}
+
+.overview, .expenses-list {
+    background-color: #587ef4;
+    grid-column: span 2;    
+    border: 2px solid black;
+}
+
+.overview-panel {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.overview-panel > * {
+    width: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* .list-items {
+    padding: 0 0 0 1rem;
+} */
+
+li {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    column-gap: 100px;
+    align-items: center;
+    justify-items: center;
+    height: 100%;
+}
+
+li > * {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+
+@media (max-width: 768px) {
+    .wrapper {
+        width: 70vw;
+    }
+
+    .main-content {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 200px 200px 150px 1fr;
+        column-gap: 0px;
+        /* row-gap: 0px; */
+
+        /* grid-template-areas: 
+            'budget'
+            'expenses'
+            'overview'
+            'exp-items'; */
+
+
+        background-color: #fcf82e;
+    }
+
+    .budget-container {
+        /* grid-area: budget; */
+        grid-row: 1 / span 1;
+    }
+
+    .expenses-container {
+        /* grid-area: expenses; */
+        grid-row: 2 / 3;
+    }
+
+    .overview-panel {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+
+        /* grid-area: overview; */
+        /* grid-row: 3 / 5; */
+        
+    }
+
+    li {
+        column-gap: 2px;
+    }
+
+    li > * {
+        flex-direction: column;
+        flex-wrap: wrap;
+    }
+}
+
+
+
+
