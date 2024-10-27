@@ -1,0 +1,118 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: rgb(94, 143, 109);
+}
+
+main {
+    background-color: rgb(213, 213, 213);
+    margin: 3rem auto;
+    padding: 1rem;
+
+    width: 60vw;
+    height: 100%;
+    border-radius: 5%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.circle {
+    position: relative;
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    overflow: hidden;
+    
+    background-color: #565252;
+    border: 2px solid black;
+}
+
+.circle button {
+    width: 100%;
+    height: 100%;
+
+    position: absolute;
+    bottom: 50%;
+    left: 50%;
+    transform-origin: bottom left;
+
+    border: 2px solid black;
+    outline: none;
+}
+
+.circle button:hover {
+    /* transform: scale(1.2); */
+    z-index: 1;
+    box-shadow: 0px 0px 10px 5px white;
+}
+
+.btn-1 {
+    background-color: red;
+    transform: rotate(30deg) skewY(-30deg);
+}
+
+.btn-2 {
+    background-color: blue;
+    transform: rotate(90deg) skewY(-30deg);
+}
+
+.btn-3 {
+    background-color: yellow;
+    transform: rotate(150deg) skewY(-30deg);
+}
+
+.btn-4 {
+    background-color: green;
+    transform: rotate(210deg) skewY(-30deg);
+}
+
+.btn-5 {
+    background-color: orange;
+    transform: rotate(270deg) skewY(-30deg);
+}
+
+.btn-6 {
+    background-color: violet;
+    transform: rotate(330deg) skewY(-30deg);
+}
+
+.btn-random, .btn-random-one {
+    width: 80%;
+    height: 50px;
+    /* border: 4px solid black; */
+    background-color: #4a4a4a;
+    color: white;
+    font-size: 18px;
+    outline: none;
+    border-radius: 10px;
+}
+
+.btn-random:hover, .btn-random-one:hover {
+    background-color: #717171;
+}
+
+.btn-random:active, .btn-random-one:active {
+    background-color: #232323;
+}
+
+.bg-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+@media (min-width: 768px) {
+    main {
+        max-width: 35vw;
+    }
+}
+
+
+
