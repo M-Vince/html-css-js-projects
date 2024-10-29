@@ -1,0 +1,95 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #535353;
+}
+
+main {
+    width: 60vw;
+    /* height: 100%; */
+    height: 30rem;
+    margin: 5rem auto;
+    padding: 1rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;    
+    justify-content: center;    
+
+    background-color: #c4b8be;
+    border: 4px solid black;
+}
+
+h1, h2, .btn-container {
+    height: 100%;
+    display: flex;
+    align-items: center;    
+    justify-content: center;
+    font-size: 3rem;
+}
+
+h2 {
+    font-size: 5rem;
+}
+
+.btn-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 5px;
+    width: 25vw;
+}
+
+.btn-plus, .btn-minus, .btn-reset {
+    width: 100px;
+    height: 50px;   
+    border-radius: 5px;
+    font-size: 1.5rem;
+}
+
+.btn-minus {
+    background-color: red;
+}
+
+.btn-reset {
+    background-color: #998f8f;
+}
+
+.btn-plus {
+    background-color: green;
+    
+}
+
+.btn-minus:hover {
+    background-color: #fe4949;
+}
+
+.btn-reset:hover {
+    background-color: #beb2b2;
+}
+
+.btn-plus:hover {
+    background-color: rgb(4, 176, 4);
+}
+
+@media (max-width: 768px) {
+    main {
+        width: 80vw;
+    }
+
+    .btn-container {
+        width: 60vw;
+    }
+
+    .btn-plus, .btn-minus, .btn-reset {
+        width: 90px;
+        height: 50px;   
+        border-radius: 5px;
+        font-size: 1.5rem;
+    }
+    
+}
