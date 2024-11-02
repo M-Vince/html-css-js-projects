@@ -1,15 +1,14 @@
 const board = document.querySelector('.board');
 const btnReset = document.querySelector('.btn-reset');
 const allTiles = document.querySelectorAll('.tile');
+const message = document.querySelector('p');
 
 // Initial values
 let tileArray = Array.from(allTiles);
 let flagOpp = true;
-let someArrayO = [];
-let someArrayX = [];
-let checker = false;
-let countO = 0;
-let countX = 0;
+let isTie = false;
+let roundWon = false;
+let roundLose = false;
 
 // Board Indexes 
 // [
@@ -50,63 +49,54 @@ btnReset.addEventListener('click', resetBoard);
 
 // Check users play if each tile has a winning pattern
 function checkCombination() {
-    // tileArray = Array.from(allTiles);
-    // console.log(tileArray);
-    // for(let i = 0; i < tileArray.length; i++) {
-    //     console.log(tileArray[i]);
-    // }
 
     // Opponent's turn to place 'X'
     if(flagOpp) {getRandomTile()}
 
+    // NEW: Using tileArray (board), find the pattern in the winning
+    // combination array and assign to 3 variables, it checks whether
+    // it passes the 'O' & 'X' pattern
+    for (let i = 0; i < combinations.length; i++) {
+        const winCombi = combinations[i];
+        let [a, b, c] = winCombi;
 
-    // Check each tile that has 'O' & 'X'
-    // and put them to another array to check
-    tileArray.map((item, index) => {
-        if(item.innerText === 'O') {
-            // console.log(item.innerText, index);
-            // if (!someArrayO.includes(index)) {
-            // }
-            someArrayO.push(index);
-        } 
-        
-        if (item.innerText === 'X') {
-            someArrayX.push(index);
-        }
-    })
-
-    
-    // Check each 'O''s & 'X''s array if 
-    // they passed the winning combination
-    for(let i = 0; i < combinations.length; i++) {
-        console.log(combinations[i]);
-        for(let j = 0; j < combinations[i].length; j++) {
-            if(someArrayO.includes(combinations[i][j])) {
-                console.log('2ND LOOP: CIRCLE => ',combinations[i][j]);
-                countO++;
-                console.log('CountO:',countO);
-            } else if(someArrayX.includes(combinations[i][j])) {
-                console.log('2ND LOOP: CROSS => ',combinations[i][j]);
-                countX++;
-                console.log('CountX:',countX);
-            }
+        if(tileArray[a].innerText === 'O' && 
+            tileArray[b].innerText === 'O' && 
+            tileArray[c].innerText === 'O') {
+            console.log(a, b, c);
+            roundWon = true;
+            break;
             
-        }
-        console.log(`---------------------`);
-        
-
-        // Conditions if user wins or loses
-        if(countO === 3) {
-            alertModal('You win!');
-            break;
-        } else if (countX === 3) {
-            alertModal('You lose!');
+        } else if (tileArray[a].innerText === 'X' && 
+            tileArray[b].innerText === 'X' && 
+            tileArray[c].innerText === 'X') {
+            console.log(a, b, c);
+            roundLose = true;
             break;
         }
-        else 
-            countO = 0;
-            countX = 0;
     }
+
+    // Check if user win or lose
+    if(roundWon) {
+        result('You Win!');
+        return;
+    }
+    else if(roundLose) {
+        result('You Lose!');
+        return;
+    }
+
+    // Check if all tiles aren't empty and
+    // return if it's tie or not
+    isTie = tileArray.every(winCombi => {
+        return winCombi.innerText !== '';
+    });
+
+    if(isTie) {
+        result('Tie!');
+        return;
+    }
+    // console.log('is Tie? => ',isTie);
     
 }
 
@@ -126,7 +116,6 @@ function getRandomTile() {
         
     } else {
         // console.log(`Flag is ${flagOpp} at the moment`);
-        
         tileArray[randomIndex].textContent = 'X';
         tileArray[randomIndex].classList.add('cross');
 
@@ -151,29 +140,21 @@ function getRandomTile() {
 function resetBoard() {
     tileArray = Array.from(allTiles);
     flagOpp = true;
-    someArrayO = [];
-    someArrayX = [];
-    countO = 0;
-    countX = 0;
-    // console.log('working');
+    isTie = false;
+    roundWon = false;
+    roundLose = false;
+    message.innerText = '';
 
     allTiles.forEach((item) => {
         item.classList.remove('circle'); 
         item.classList.remove('cross'); 
-        item.textContent = '';
+        item.innerText = '';
     })
 }
 
 // Default modal if user wins or lose
-function alertModal(text) {
+function result(text) {
     setTimeout(() => {
-        alert(text)
-        allTiles.forEach(item => {
-            item.innerText = '';
-            item.classList.remove('circle');
-            item.classList.remove('cross');
-        })
-        resetBoard();
-
+        message.innerText = text;
     }, 500);
 }
