@@ -9,6 +9,7 @@ let flagOpp = true;
 let isTie = false;
 let roundWon = false;
 let roundLose = false;
+let isOver = false;
 
 // Board Indexes 
 // [
@@ -37,11 +38,17 @@ allTiles.forEach((item) => {
         // User click inserts a 'O' to a tile
         // and check if its passes the winning
         // combinations
-        item.textContent = 'O';
-        item.classList.add('circle');
-        checkCombination();
-        console.log('TileArray Length: ', tileArray.length);
-        
+        if(!isOver) {
+            if(item.innerText === '' && item.innerText !== 'X') {
+                item.textContent = 'O';
+                item.classList.add('circle');
+                checkCombination();
+                // Opponent's turn to place 'X'
+                if(flagOpp) 
+                    getRandomTile();
+                console.log('TileArray Length: ', tileArray.length);
+            }
+        }
     });
 })
 
@@ -49,9 +56,6 @@ btnReset.addEventListener('click', resetBoard);
 
 // Check users play if each tile has a winning pattern
 function checkCombination() {
-
-    // Opponent's turn to place 'X'
-    if(flagOpp) {getRandomTile()}
 
     // NEW: Using tileArray (board), find the pattern in the winning
     // combination array and assign to 3 variables, it checks whether
@@ -78,11 +82,14 @@ function checkCombination() {
 
     // Check if user win or lose
     if(roundWon) {
+        flagOpp = false;
         result('You Win!');
+        isOver = true;
         return;
     }
     else if(roundLose) {
         result('You Lose!');
+        isOver = true;
         return;
     }
 
@@ -94,6 +101,7 @@ function checkCombination() {
 
     if(isTie) {
         result('Tie!');
+        isOver = true;
         return;
     }
     // console.log('is Tie? => ',isTie);
@@ -133,6 +141,9 @@ function getRandomTile() {
             flagOpp = false;
             // console.log('Flag is false', flagOpp);
         }
+
+        // Check if opponent 'X' wins
+        checkCombination();
     }
 }
 
@@ -143,6 +154,7 @@ function resetBoard() {
     isTie = false;
     roundWon = false;
     roundLose = false;
+    isOver = false;
     message.innerText = '';
 
     allTiles.forEach((item) => {
