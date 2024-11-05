@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <main>
+        <h1> Password Generator </h1>
+
+        <div class="pw-header">
+            <input type="text" name="password-text" id="password-text">
+            <button class="btn-copy"> Copy </button>
+        </div>
+
+        <div class="pw-length">
+            <!-- <p class="min-length"> 1 </p> -->
+            <input type="range" name="pw-slider" id="pw-slider" min="1" max="20" value="1">
+            <p class="length-value"> 1 </p>
+        </div>
+
+        <div class="pw-settings">
+            <div class="s-item">
+                <h3> Include Uppercase Letters </h3>
+                <input type="checkbox" name="includeUpper" id="incUpper">
+            </div>
+            <div class="s-item">
+                <h3> Include Lowercase Letters </h3>
+                <input type="checkbox" name="includeUpper" id="incLower">
+            </div>
+            <div class="s-item">
+                <h3> Include Numbers </h3>
+                <input type="checkbox" name="includeUpper" id="incNumber">
+            </div>
+            <div class="s-item">
+                <h3> Include Symbols </h3>
+                <input type="checkbox" name="includeUpper" id="incSymbol">
+            </div>
+        </div>
+
+        <button class="btn-generate">
+            Generate Password
+        </button>
+
+    </main>
+    
+    <script src="app.js"></script>
+</body>
+</html>
