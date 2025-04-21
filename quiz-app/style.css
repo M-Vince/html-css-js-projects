@@ -8,3 +8,44 @@
 body {
     background-color: slategray;
 }
+
+.title {
+    text-align: center;
+    margin: 2rem auto;
+}
+.container {
+    margin: 2rem auto;
+    padding: 1rem;
+    border: 4px solid black;
+
+    width: 70vw;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    background-color: #abc4dc;
+}
+
+.container > *  {
+    margin-bottom: 1rem;
+}
+
+.question { 
+    border: 2px solid black;
+    text-align: center;
+    padding: 1rem;
+}
+
+.answers {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid black;
+
+    width: 100%;
+}
+
+.btn-answer {
+    margin: 8px;
+    height: 50px;
+}
